@@ -110,17 +110,33 @@ function openRules(name, price){
 
   document.getElementById("modalBody").innerHTML = `
     <h3>${name}</h3>
-    <p>This content is private. 18+ only.</p>
+
+    <p><strong>18+ PRIVATE ADULT CONTENT</strong></p>
+
+    <p>
+      This premium content is for personal viewing only.
+      It is protected and monitored.
+    </p>
+
     <ul>
-      <li>Do not share or repost</li>
-      <li>New videos uploaded twice a week</li>
-      <li>Access granted after payment confirmation</li>
+      <li>Do NOT share, repost, or redistribute any content</li>
+      <li>Content is for private access only</li>
+      <li>New content is uploaded twice per week</li>
+      <li>Access duration is <strong>3 months</strong> from confirmation</li>
+      <li>Any violation results in permanent loss of access</li>
     </ul>
+
+    <p>
+      Access is granted <strong>only after manual payment confirmation</strong>.
+    </p>
+
     <button onclick="showPayment()">Continue</button>
     <button onclick="closeModal()" class="mt-2">Close</button>
   `;
+
   document.getElementById("bookingModal").style.display="block";
 }
+
 
 function showPayment(){
   document.getElementById("modalBody").innerHTML = `
