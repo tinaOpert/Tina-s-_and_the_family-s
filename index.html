@@ -104,19 +104,38 @@ function enterSite(){
   document.getElementById("site").style.display="block";
 }
 
-function openRules(name, price){
+function openRules(name){
   currentService = name;
-  currentPrice = price;
 
   document.getElementById("modalBody").innerHTML = `
     <h3>${name}</h3>
 
-    <p><strong>18+ PRIVATE ADULT CONTENT</strong></p>
+    <p><strong>18+ PRIVATE CONTENT</strong></p>
 
-    <p>
-      This premium content is for personal viewing only.
-      It is protected and monitored.
-    </p>
+    <ul>
+      <li>Do NOT share, repost, or redistribute</li>
+      <li>Personal access only</li>
+      <li>New content uploaded twice per week</li>
+      <li>Access duration: <strong>3 months</strong></li>
+      <li>Violation = permanent loss of access</li>
+    </ul>
+
+    <h4>Select Access Type</h4>
+
+    <button onclick="showPayment(550, 'View Only (No Download)')" class="mb-2">
+      $550 — View Only (No Download)
+    </button>
+
+    <button onclick="showPayment(750, 'Full Access (Download Allowed)')" class="mb-2">
+      $750 — Full Access (Download)
+    </button>
+
+    <button onclick="closeModal()" class="mt-2">Close</button>
+  `;
+
+  document.getElementById("bookingModal").style.display="block";
+}
+
 
     <ul>
       <li>Do NOT share, repost, or redistribute any content</li>
