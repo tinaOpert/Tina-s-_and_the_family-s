@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Exclusive Content & Booking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body { background:#0f0f0f; color:#eee; font-family:Arial, sans-serif; }
+header { background:#1b0033; padding:60px 20px; text-align:center; }
+section { padding:60px 20px; }
+.card { background:#1c1c1c; border:1px solid #333; border-radius:10px; }
+button { background:#ff4da6; border:none; color:#fff; padding:10px 20px; border-radius:6px; }
+button:hover { background:#ff1f8f; }
+.age-gate {
+  position:fixed; inset:0; background:#000;
+  display:flex; align-items:center; justify-content:center; z-index:9999;
+}
+.modal {
+  display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,.9); z-index:9998;
+}
+.modal-content {
+  background:#1e1e1e; margin:5% auto; padding:25px;
+  width:90%; max-width:520px; border-radius:10px;
+}
+code { color:#00ffcc; word-break:break-all; }
+</style>
+</head>
+
+<body>
+
+<!-- AGE GATE -->
+<div class="age-gate" id="ageGate">
+  <div class="text-center">
+    <h1 class="text-danger">18+ ONLY</h1>
+    <p>You must be 18 or older to continue</p>
+    <button onclick="enterSite()">Enter Site</button>
+  </div>
+</div>
+
+<div id="site" style="display:none">
+
+<header>
+  <h1>Exclusive Content</h1>
+  <p>Free previews • Premium videos • Manual crypto access</p>
+</header>
+
+<!-- FREE VIDEO -->
+<section>
+<h2 class="text-center mb-4">Free Preview</h2>
+<div class="text-center">
+  <video width="80%" controls>
+    <source src="preview.mp4" type="video/mp4">
+  </video>
+</div>
+</section>
+
+<!-- PREMIUM VIDEOS -->
+<section>
+<h2 class="text-center mb-4">Premium Videos</h2>
+<div class="row g-3 justify-content-center">
+
+<div class="col-md-4">
+  <div class="card p-3 text-center">
+    <h4>Premium Video 1</h4>
+    <p>$30</p>
+    <button onclick="openRules('Premium Video 1',30)">Unlock</button>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="card p-3 text-center">
+    <h4>Premium Video 2</h4>
+    <p>$30</p>
+    <button onclick="openRules('Premium Video 2',30)">Unlock</button>
+  </div>
+</div>
+
+</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="bookingModal">
+  <div class="modal-content" id="modalBody"></div>
+</div>
+
+<footer class="text-center p-4">
+<p>Crypto only • Manual confirmation • Do not share content</p>
+</footer>
+
+</div>
+
+<script>
+let currentService = "";
+let currentPrice = 0;
+
+function enterSite(){
+  document.getElementById("ageGate").style.display="none";
+  document.getElementById("site").style.display="block";
+}
+
+function openRules(name, price){
+  currentService = name;
+  currentPrice = price;
+
+  document.getElementById("modalBody").innerHTML = `
+    <h3>${name}</h3>
+    <p>This content is private. 18+ only.</p>
+    <ul>
+      <li>Do not share or repost</li>
+      <li>New videos uploaded twice a week</li>
+      <li>Access granted after payment confirmation</li>
+    </ul>
+    <button onclick="showPayment()">Continue</button>
+    <button onclick="closeModal()" class="mt-2">Close</button>
+  `;
+  document.getElementById("bookingModal").style.display="block";
+}
+
+function showPayment(){
+  document.getElementById("modalBody").innerHTML = `
+    <h3>Payment Instructions</h3>
+    <p><strong>Service:</strong> ${currentService}</p>
+    <p><strong>Total:</strong> $${currentPrice}</p>
+
+    <hr>
+
+    <p><strong>Bitcoin (BTC)</strong></p>
+    <code>1PY4hkC9CcZ7dB4YWz6EpikhxQMfV3u9Bs</code>
+
+    <p class="mt-3">
+      Send exact amount. After payment, click below and contact support with TX hash.
+    </p>
+
+    <button onclick="paymentSent()">I've Paid – Request Confirmation</button>
+    <button onclick="closeModal()" class="mt-2">Close</button>
+  `;
+}
+
+function paymentSent(){
+  document.getElementById("modalBody").innerHTML = `
+    <h3>Payment Pending</h3>
+    <p>Your payment request has been received.</p>
+
+    <ul>
+      <li>Payments are confirmed manually</li>
+      <li>Telegram access is sent after confirmation</li>
+      <li>Do NOT send again unless told</li>
+    </ul>
+
+    <p>Please contact support with your TX hash.</p>
+
+    <button onclick="closeModal()">Close</button>
+  `;
+}
+
+function closeModal(){
+  document.getElementById("bookingModal").style.display="none";
+}
+</script>
+
+</body>
+</html>
