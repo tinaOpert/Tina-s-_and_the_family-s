@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Exclusive Content & Booking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>Ms Tina’s And Family’s Secret</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <style>
 body { background:#0f0f0f; color:#eee; font-family:Arial, sans-serif; }
 header { background:#1b0033; padding:60px 20px; text-align:center; }
 section { padding:60px 20px; }
-.card { background:#1c1c1c; border:1px solid #333; border-radius:10px; }
+.card { background:#1c1c1c; border:1px solid #333; border-radius:10px; color:#eee; }
 button { background:#ff4da6; border:none; color:#fff; padding:10px 20px; border-radius:6px; }
 button:hover { background:#ff1f8f; }
 .age-gate {
@@ -27,9 +25,12 @@ button:hover { background:#ff1f8f; }
   width:90%; max-width:520px; border-radius:10px;
 }
 code { color:#00ffcc; word-break:break-all; }
+.nav-tabs .nav-link { color:#eee; }
+.nav-tabs .nav-link.active { color:#ff4da6; background:#1b0033; }
+.video-thumb { cursor:pointer; transition:0.3s; }
+.video-thumb:hover { transform:scale(1.05); }
 </style>
 </head>
-
 <body>
 
 <!-- AGE GATE -->
@@ -44,59 +45,86 @@ code { color:#00ffcc; word-break:break-all; }
 <div id="site" style="display:none">
 
 <header>
-  <h1>Welcome to Ms Tina’s and the Family Kingdom</h1>
-  <p>Premium Content • 18+ Only • Do Not Share</p>
+  <h1>Welcome to Ms Tina’s AND THE FAMILY KINGDOM PREMIUM CONTENT</h1>
+  <p>DO NOT SHARE – Exclusive free previews, premium videos, services & crypto payments</p>
 </header>
 
+<!-- NAV TABS -->
+<ul class="nav nav-tabs justify-content-center mb-4" id="serviceTabs">
+  <li class="nav-item"><a class="nav-link active" href="#freevideos" onclick="showTab('freevideos')">Free Videos</a></li>
+  <li class="nav-item"><a class="nav-link" href="#premiumvideos" onclick="showTab('premiumvideos')">Premium Videos</a></li>
+  <li class="nav-item"><a class="nav-link" href="#services" onclick="showTab('services')">Services & Booking</a></li>
+  <li class="nav-item"><a class="nav-link" href="#shop" onclick="showTab('shop')">Shop</a></li>
+</ul>
 
-<!-- FREE VIDEO -->
-<section>
-<h2 class="text-center mb-4">Free Preview</h2>
-<div class="text-center">
-  <video width="80%" controls>
-    <source src="preview.mp4" type="video/mp4">
-  </video>
-</div>
-</section>
+<!-- TABS CONTENT -->
+<div id="tabContent">
 
-<!-- PREMIUM VIDEOS -->
-<section>
-<h2 class="text-center mb-4">Premium Videos</h2>
-<div class="row g-3 justify-content-center">
-
-<div class="col-md-4">
-  <div class="card p-3 text-center">
-    <h4>Premium Video 1</h4>
-    <p>$30</p>
-    <button onclick="openRules('Premium Video 1',30)">Unlock</button>
+  <!-- FREE VIDEOS -->
+  <div id="freevideos" class="tab-pane" style="display:block">
+    <div class="row g-3">
+      <div class="col-md-6"><video class="w-100 rounded shadow video-thumb" controls poster="https://via.placeholder.com/800x450?text=Free+1"><source src="https://your-free-video-link.mp4" type="video/mp4"></video></div>
+      <div class="col-md-6"><video class="w-100 rounded shadow video-thumb" controls poster="https://via.placeholder.com/800x450?text=Free+2"><source src="https://your-free-video-link.mp4" type="video/mp4"></video></div>
+    </div>
   </div>
-</div>
 
-<div class="col-md-4">
-  <div class="card p-3 text-center">
-    <h4>Premium Video 2</h4>
-    <p>$30</p>
-    <button onclick="openRules('Premium Video 2',30)">Unlock</button>
+  <!-- PREMIUM VIDEOS -->
+  <div id="premiumvideos" class="tab-pane" style="display:none">
+    <div class="row g-3">
+      <div class="col-md-4"><div class="card p-3 text-center">
+        <img src="https://via.placeholder.com/400x250?text=Premium+1" class="img-fluid mb-2">
+        <p>Premium Video 1</p>
+        <button onclick="openRules('Premium Video 1')">Unlock</button>
+      </div></div>
+      <div class="col-md-4"><div class="card p-3 text-center">
+        <img src="https://via.placeholder.com/400x250?text=Premium+2" class="img-fluid mb-2">
+        <p>Premium Video 2</p>
+        <button onclick="openRules('Premium Video 2')">Unlock</button>
+      </div></div>
+    </div>
   </div>
-</div>
+
+  <!-- SERVICES -->
+  <div id="services" class="tab-pane" style="display:none">
+    <!-- Massage Example -->
+    <h3>Massage & Wellness</h3>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="card p-3"><h4>Relaxation Massage</h4><p>60 mins — $80</p><button onclick="openBooking('Relaxation Massage',80)">Book</button></div></div>
+      <div class="col-md-4"><div class="card p-3"><h4>Deep Tissue Massage</h4><p>60 mins — $100</p><button onclick="openBooking('Deep Tissue Massage',100)">Book</button></div></div>
+      <div class="col-md-4"><div class="card p-3"><h4>Couples Session</h4><p>90 mins — $180</p><button onclick="openBooking('Couples Massage',180)">Book</button></div></div>
+    </div>
+
+    <!-- Companion Example -->
+    <h3 class="mt-4">Companion & Social Experiences</h3>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="card p-3"><h4>Private Meetup</h4><p>1 hr — $200</p><button onclick="openBooking('Private Meetup',200)">Book</button></div></div>
+      <div class="col-md-4"><div class="card p-3"><h4>Dinner Date</h4><p>3 hrs — $400</p><button onclick="openBooking('Dinner Date',400)">Book</button></div></div>
+    </div>
+  </div>
+
+  <!-- SHOP -->
+  <div id="shop" class="tab-pane" style="display:none">
+    <div class="row g-3">
+      <div class="col-md-4"><div class="card p-3"><h4>Personal Massager</h4><p>$45</p><button onclick="openBooking('Personal Massager',45)">Buy</button></div></div>
+      <div class="col-md-4"><div class="card p-3"><h4>Intimate Toy</h4><p>$70</p><button onclick="openBooking('Intimate Toy',70)">Buy</button></div></div>
+    </div>
+  </div>
 
 </div>
-</section>
 
-<!-- MODAL -->
+<!-- BOOKING / PREMIUM MODAL -->
 <div class="modal" id="bookingModal">
-  <div class="modal-content" id="modalBody"></div>
+  <div class="modal-content" id="modalBody">
+    <!-- Filled dynamically -->
+  </div>
 </div>
 
 <footer class="text-center p-4">
   <p>Enjoy the best with the family</p>
 </footer>
 
-
-</div>
-
 <script>
-let currentService = "";
+let currentService = '';
 let currentPrice = 0;
 
 function enterSite(){
@@ -104,74 +132,48 @@ function enterSite(){
   document.getElementById("site").style.display="block";
 }
 
+function showTab(tabId){
+  let tabs = ['freevideos','premiumvideos','services','shop'];
+  tabs.forEach(t=>document.getElementById(t).style.display='none');
+  document.getElementById(tabId).style.display='block';
+  document.querySelectorAll('#serviceTabs .nav-link').forEach(n=>n.classList.remove('active'));
+  document.querySelector('[href="#'+tabId+'"]').classList.add('active');
+}
+
 function openRules(name){
   currentService = name;
-
   document.getElementById("modalBody").innerHTML = `
     <h3>${name}</h3>
-
     <p><strong>18+ PRIVATE CONTENT</strong></p>
-
     <ul>
-      <li>Do NOT share, repost, or redistribute</li>
+      <li>Do NOT share or repost</li>
       <li>Personal access only</li>
-      <li>New content uploaded twice per week</li>
+      <li>New videos uploaded twice per week</li>
       <li>Access duration: <strong>3 months</strong></li>
       <li>Violation = permanent loss of access</li>
     </ul>
-
     <h4>Select Access Type</h4>
-
-    <button onclick="showPayment(550, 'View Only (No Download)')" class="mb-2">
-      $550 — View Only (No Download)
-    </button>
-
-    <button onclick="showPayment(750, 'Full Access (Download Allowed)')" class="mb-2">
-      $750 — Full Access (Download)
-    </button>
-
+    <button onclick="showPayment(550,'View Only (No Download)')" class="mb-2">$550 — View Only (No Download)</button>
+    <button onclick="showPayment(750,'Full Access (Download Allowed)')" class="mb-2">$750 — Full Access (Download)</button>
     <button onclick="closeModal()" class="mt-2">Close</button>
   `;
-
   document.getElementById("bookingModal").style.display="block";
 }
 
-
-    <ul>
-      <li>Do NOT share, repost, or redistribute any content</li>
-      <li>Content is for private access only</li>
-      <li>New content is uploaded twice per week</li>
-      <li>Access duration is <strong>3 months</strong> from confirmation</li>
-      <li>Any violation results in permanent loss of access</li>
-    </ul>
-
-    <p>
-      Access is granted <strong>only after manual payment confirmation</strong>.
-    </p>
-
-    <button onclick="showPayment()">Continue</button>
-    <button onclick="closeModal()" class="mt-2">Close</button>
-  `;
-
-  document.getElementById("bookingModal").style.display="block";
-}
-
-
-function showPayment(){
+function showPayment(price,accessType){
+  currentPrice = price;
   document.getElementById("modalBody").innerHTML = `
     <h3>Payment Instructions</h3>
     <p><strong>Service:</strong> ${currentService}</p>
-    <p><strong>Total:</strong> $${currentPrice}</p>
-
+    <p><strong>Access Type:</strong> ${accessType}</p>
+    <p><strong>Total:</strong> $${price}</p>
     <hr>
-
     <p><strong>Bitcoin (BTC)</strong></p>
     <code>1PY4hkC9CcZ7dB4YWz6EpikhxQMfV3u9Bs</code>
-
     <p class="mt-3">
-      Send exact amount. After payment, click below and contact support with TX hash.
+      Send the exact amount shown above.<br>
+      Access is granted only after <strong>manual confirmation</strong>.
     </p>
-
     <button onclick="paymentSent()">I've Paid – Request Confirmation</button>
     <button onclick="closeModal()" class="mt-2">Close</button>
   `;
@@ -181,15 +183,11 @@ function paymentSent(){
   document.getElementById("modalBody").innerHTML = `
     <h3>Payment Pending</h3>
     <p>Your payment request has been received.</p>
-
     <ul>
       <li>Payments are confirmed manually</li>
-      <li>Telegram access is sent after confirmation</li>
-      <li>Do NOT send again unless told</li>
+      <li>Telegram or download link sent after confirmation</li>
+      <li>Do NOT send again unless instructed</li>
     </ul>
-
-    <p>Please contact support with your TX hash.</p>
-
     <button onclick="closeModal()">Close</button>
   `;
 }
@@ -197,7 +195,23 @@ function paymentSent(){
 function closeModal(){
   document.getElementById("bookingModal").style.display="none";
 }
+
+function openBooking(name,price){
+  currentService = name;
+  currentPrice = price;
+  document.getElementById("modalBody").innerHTML = `
+    <h3>${name}</h3>
+    <p>Total: $${price}</p>
+    <input class="form-control mb-2" placeholder="Full Name">
+    <input class="form-control mb-2" placeholder="Email">
+    <textarea class="form-control mb-2" placeholder="Notes"></textarea>
+    <button onclick="showPayment(${price},'Booking')">I've Paid – Request Confirmation</button>
+    <button onclick="closeModal()" class="mt-2">Close</button>
+  `;
+  document.getElementById("bookingModal").style.display="block";
+}
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
