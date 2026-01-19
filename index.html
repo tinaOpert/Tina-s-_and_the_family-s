@@ -2,216 +2,177 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>Ms Tina’s Family Kingdom</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ms Tina’s And Family’s Secret</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
-body { background:#0f0f0f; color:#eee; font-family:Arial, sans-serif; }
-header { background:#1b0033; padding:60px 20px; text-align:center; }
-section { padding:60px 20px; }
-.card { background:#1c1c1c; border:1px solid #333; border-radius:10px; color:#eee; }
-button { background:#ff4da6; border:none; color:#fff; padding:10px 20px; border-radius:6px; }
-button:hover { background:#ff1f8f; }
-.age-gate {
-  position:fixed; inset:0; background:#000;
-  display:flex; align-items:center; justify-content:center; z-index:9999;
-}
-.modal {
-  display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,.9); z-index:9998;
-}
-.modal-content {
-  background:#1e1e1e; margin:5% auto; padding:25px;
-  width:90%; max-width:520px; border-radius:10px;
-}
-code { color:#00ffcc; word-break:break-all; }
-.nav-tabs .nav-link { color:#eee; }
-.nav-tabs .nav-link.active { color:#ff4da6; background:#1b0033; }
-.video-thumb { cursor:pointer; transition:0.3s; }
-.video-thumb:hover { transform:scale(1.05); }
+body{background:#0b0b0b;color:#eee;font-family:Arial}
+.card{background:#151515;border:1px solid #333;border-radius:12px}
+button{background:#ff4da6;border:none;color:#fff;border-radius:6px;padding:10px 16px}
+button:hover{background:#ff1f8f}
+header{padding:60px 20px;text-align:center;background:#1b0033}
+section{padding:50px 20px}
+.lock{font-size:22px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999}
+.modal-content{background:#111;margin:5% auto;padding:25px;max-width:520px;border-radius:12px}
+video{width:100%;border-radius:10px}
 </style>
 </head>
+
 <body>
 
-<!-- AGE GATE -->
-<div class="age-gate" id="ageGate">
-  <div class="text-center">
-    <h1 class="text-danger">18+ ONLY</h1>
-    <p>You must be 18 or older to continue</p>
-    <button onclick="enterSite()">Enter Site</button>
+<!-- LOGIN / SIGNUP -->
+<div id="authScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center">
+  <div style="background:#111;padding:30px;border-radius:12px;max-width:360px;width:100%">
+    <h3 class="text-center text-danger">Member Login</h3>
+    <input id="user" class="form-control mb-2" placeholder="Username">
+    <input id="pass" type="password" class="form-control mb-3" placeholder="Password">
+    <button class="w-100 mb-2" onclick="login()">Login</button>
+    <button class="w-100 btn btn-outline-light" onclick="signup()">Sign Up</button>
+    <p id="msg" class="text-danger text-center mt-2"></p>
   </div>
 </div>
 
+<!-- MAIN SITE -->
 <div id="site" style="display:none">
 
 <header>
-  <h1>Welcome to Ms Tina’s AND THE FAMILY KINGDOM PREMIUM CONTENT</h1>
-  <p>DO NOT SHARE ANY VIDEOS BECAUSE OF THE LITTLE ACTRESS – Exclusive free previews, premium videos </p>
+<h1>Welcome to Ms Tina’s AND THE FAMILY KINGDOM</h1>
+<p>PREMIUM CONTENT — DO NOT SHARE</p>
 </header>
 
-<!-- NAV TABS -->
-<ul class="nav nav-tabs justify-content-center mb-4" id="serviceTabs">
-  <li class="nav-item"><a class="nav-link active" href="#freevideos" onclick="showTab('freevideos')">Free Videos</a></li>
-  <li class="nav-item"><a class="nav-link" href="#premiumvideos" onclick="showTab('premiumvideos')">Premium Videos</a></li>
-  <li class="nav-item"><a class="nav-link" href="#services" onclick="showTab('services')">Services & Booking</a></li>
-  <li class="nav-item"><a class="nav-link" href="#shop" onclick="showTab('shop')">Shop</a></li>
-</ul>
+<!-- FREE VIDEOS -->
+<section>
+<h2 class="text-center mb-4">Free Preview Videos</h2>
+<div class="row g-3">
 
-<!-- TABS CONTENT -->
-<div id="tabContent">
-
-  <!-- FREE VIDEOS -->
-  <div id="freevideos" class="tab-pane" style="display:block">
-    <div class="row g-3">
-      <div class="col-md-6"><video class="w-100 rounded shadow video-thumb" controls poster="https://via.placeholder.com/800x450?text=Free+1"><source src="https://your-free-video-link.mp4" type="video/mp4"></video></div>
-      <div class="col-md-6"><video class="w-100 rounded shadow video-thumb" controls poster="https://via.placeholder.com/800x450?text=Free+2"><source src="https://your-free-video-link.mp4" type="video/mp4"></video></div>
-    </div>
-  </div>
-
-  <!-- PREMIUM VIDEOS -->
-  <div id="premiumvideos" class="tab-pane" style="display:none">
-    <div class="row g-3">
-      <div class="col-md-4"><div class="card p-3 text-center">
-        <img src="https://via.placeholder.com/400x250?text=Premium+1" class="img-fluid mb-2">
-        <p>Premium Video 1</p>
-        <button onclick="openRules('Premium Video 1')">Unlock</button>
-      </div></div>
-      <div class="col-md-4"><div class="card p-3 text-center">
-        <img src="https://via.placeholder.com/400x250?text=Premium+2" class="img-fluid mb-2">
-        <p>Premium Video 2</p>
-        <button onclick="openRules('Premium Video 2')">Unlock</button>
-      </div></div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <div id="services" class="tab-pane" style="display:none">
-    <!-- Massage Example -->
-    <h3>Massage & Wellness</h3>
-    <div class="row g-3">
-      <div class="col-md-4"><div class="card p-3"><h4>Relaxation Massage</h4><p>60 mins — $70</p><button onclick="openBooking('Relaxation Massage',80)">Book</button></div></div>
-      <div class="col-md-4"><div class="card p-3"><h4>Deep Tissue Massage</h4><p>60 mins — $150</p><button onclick="openBooking('Deep Tissue Massage',100)">Book</button></div></div>
-      <div class="col-md-4"><div class="card p-3"><h4>Couples Session</h4><p>90 mins — $450</p><button onclick="openBooking('Couples Massage',180)">Book</button></div></div>
-    </div>
-
-    <!-- Companion Example -->
-    <h3 class="mt-4">Companion & Social Experiences</h3>
-    <div class="row g-3">
-      <div class="col-md-4"><div class="card p-3"><h4>Private Meetup</h4><p>1 hr — $300</p><button onclick="openBooking('Private Meetup',200)">Book</button></div></div>
-      <div class="col-md-4"><div class="card p-3"><h4>Dinner Date</h4><p>3 hrs — $400</p><button onclick="openBooking('Dinner Date',400)">Book</button></div></div>
-    </div>
-  </div>
-
-  <!-- SHOP -->
-  <div id="shop" class="tab-pane" style="display:none">
-    <div class="row g-3">
-      <div class="col-md-4"><div class="card p-3"><h4>Personal Massager</h4><p>$200</p><button onclick="openBooking('Personal Massager',45)">Buy</button></div></div>
-      <div class="col-md-4"><div class="card p-3"><h4>Intimate Toy</h4><p>$80</p><button onclick="openBooking('Intimate Toy',70)">Buy</button></div></div>
-    </div>
-  </div>
-
+<div class="col-md-4">
+<div class="card p-3">
+<video controls src="free1.mp4"></video>
+<p class="mt-2">Preview Clip 1</p>
+</div>
 </div>
 
-<!-- BOOKING / PREMIUM MODAL -->
-<div class="modal" id="bookingModal">
-  <div class="modal-content" id="modalBody">
-    <!-- Filled dynamically -->
-  </div>
+<div class="col-md-4">
+<div class="card p-3">
+<video controls src="free2.mp4"></video>
+<p class="mt-2">Preview Clip 2</p>
 </div>
+</div>
+
+</div>
+</section>
+
+<!-- PREMIUM VIDEOS -->
+<section>
+<h2 class="text-center mb-4">Premium Videos</h2>
+<div class="row g-3">
+
+<div class="col-md-4">
+<div class="card p-3 text-center">
+<div class="lock">🔒</div>
+<p>Premium Video 1</p>
+<button onclick="openRules('Premium Video 1',750)">Unlock</button>
+<p class="mt-2 text-muted">Without download: $550</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-3 text-center">
+<div class="lock">🔒</div>
+<p>Premium Video 2</p>
+<button onclick="openRules('Premium Video 2',750)">Unlock</button>
+<p class="mt-2 text-muted">Without download: $550</p>
+</div>
+</div>
+
+</div>
+</section>
 
 <footer class="text-center p-4">
-  <p>Enjoy the best with the family</p>
+<p>Enjoy the best with the family</p>
+<button onclick="logout()" class="btn btn-danger">Logout</button>
 </footer>
 
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+<div class="modal-content" id="modalBody"></div>
+</div>
+
 <script>
-let currentService = '';
-let currentPrice = 0;
+let currentService="", currentPrice=0;
 
-function enterSite(){
-  document.getElementById("ageGate").style.display="none";
-  document.getElementById("site").style.display="block";
+function signup(){
+ if(!user.value||!pass.value){msg.innerText="Fill all fields";return}
+ localStorage.setItem("u_"+user.value,pass.value);
+ msg.innerText="Account created. Login now.";
 }
 
-function showTab(tabId){
-  let tabs = ['freevideos','premiumvideos','services','shop'];
-  tabs.forEach(t=>document.getElementById(t).style.display='none');
-  document.getElementById(tabId).style.display='block';
-  document.querySelectorAll('#serviceTabs .nav-link').forEach(n=>n.classList.remove('active'));
-  document.querySelector('[href="#'+tabId+'"]').classList.add('active');
+function login(){
+ let s=localStorage.getItem("u_"+user.value);
+ if(s===pass.value){
+  localStorage.setItem("login","yes");
+  showSite();
+ } else msg.innerText="Wrong details";
 }
 
-function openRules(name){
-  currentService = name;
-  document.getElementById("modalBody").innerHTML = `
-    <h3>${name}</h3>
-    <p><strong>18+ PRIVATE CONTENT</strong></p>
-    <ul>
-      <li>Do NOT share or repost</li>
-      <li>Personal access only</li>
-      <li>New videos uploaded twice per week</li>
-      <li>Access duration: <strong>3 months</strong></li>
-      <li>Violation = permanent loss of access</li>
-    </ul>
-    <h4>Select Access Type</h4>
-    <button onclick="showPayment(600,'View Only (No Download)')" class="mb-2">$600— View Only (No Download)</button>
-    <button onclick="showPayment(900,'Full Access (Download Allowed)')" class="mb-2">900 — Full Access (Download)</button>
-    <button onclick="closeModal()" class="mt-2">Close</button>
-  `;
-  document.getElementById("bookingModal").style.display="block";
+function showSite(){
+ authScreen.style.display="none";
+ site.style.display="block";
 }
 
-function showPayment(price,accessType){
-  currentPrice = price;
-  document.getElementById("modalBody").innerHTML = `
-    <h3>Payment Instructions</h3>
-    <p><strong>Service:</strong> ${currentService}</p>
-    <p><strong>Access Type:</strong> ${accessType}</p>
-    <p><strong>Total:</strong> $${price}</p>
-    <hr>
-    <p><strong>Bitcoin (BTC)</strong></p>
-    <code>1PY4hkC9CcZ7dB4YWz6EpikhxQMfV3u9Bs</code>
-    <p class="mt-3">
-      Send the exact amount shown above.<br>
-      Access is granted only after <strong>manual confirmation</strong>.
-    </p>
-    <button onclick="paymentSent()">I've Paid – Request Confirmation</button>
-    <button onclick="closeModal()" class="mt-2">Close</button>
-  `;
+function logout(){
+ localStorage.removeItem("login");
+ location.reload();
+}
+
+if(localStorage.getItem("login")==="yes") showSite();
+
+function openRules(name,price){
+ currentService=name; currentPrice=price;
+ modalBody.innerHTML=`
+ <h3>${name}</h3>
+ <p><strong>18+ PRIVATE CONTENT</strong></p>
+ <ul>
+ <li>Do not share or repost</li>
+ <li>New uploads twice weekly</li>
+ <li>Access only after confirmation</li>
+ <li>Violation = permanent ban</li>
+ </ul>
+ <button onclick="showPayment()">Continue</button>
+ <button class="mt-2" onclick="closeModal()">Close</button>`;
+ modal.style.display="block";
+}
+
+function showPayment(){
+ modalBody.innerHTML=`
+ <h3>Payment Instructions</h3>
+ <p><strong>Total:</strong> $${currentPrice}</p>
+ <p><strong>Bitcoin (BTC)</strong></p>
+ <code>1PY4hkC9CcZ7dB4YWz6EpikhxQMfV3u9Bs</code>
+ <p class="mt-3">Send exact amount. Access is granted ONLY after manual confirmation.</p>
+ <button onclick="paymentSent()">I Have Paid</button>
+ <button class="mt-2" onclick="closeModal()">Close</button>`;
 }
 
 function paymentSent(){
-  document.getElementById("modalBody").innerHTML = `
-    <h3>Payment Pending</h3>
-    <p>Your payment request has been received.</p>
-    <ul>
-      <li>Payments are confirmed manually</li>
-      <li>Contents link sent after confirmation</li>
-      <li>Do NOT send again unless instructed</li>
-    </ul>
-    <button onclick="closeModal()">Close</button>
-  `;
+ modalBody.innerHTML=`
+ <h3>Payment Pending</h3>
+ <p>Your request is received.</p>
+ <ul>
+ <li>Manual verification required</li>
+ <li>Do NOT resend payment</li>
+ <li>Access link sent after confirmation</li>
+ </ul>
+ <button onclick="closeModal()">Close</button>`;
 }
 
-function closeModal(){
-  document.getElementById("bookingModal").style.display="none";
-}
-
-function openBooking(name,price){
-  currentService = name;
-  currentPrice = price;
-  document.getElementById("modalBody").innerHTML = `
-    <h3>${name}</h3>
-    <p>Total: $${price}</p>
-    <input class="form-control mb-2" placeholder="Full Name">
-    <input class="form-control mb-2" placeholder="Email">
-    <textarea class="form-control mb-2" placeholder="Notes"></textarea>
-    <button onclick="showPayment(${price},'Booking')">I've Paid – Request Confirmation</button>
-    <button onclick="closeModal()" class="mt-2">Close</button>
-  `;
-  document.getElementById("bookingModal").style.display="block";
-}
+function closeModal(){modal.style.display="none";}
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
